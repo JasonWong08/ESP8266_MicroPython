@@ -29,10 +29,10 @@ def initConnection():
     while True:
         uart.write("d")
         for t in range(30):
-            uos.dupterm(None, 1)
+            uos.dupterm(None, 1)        # disable REPL on UART(0), detach the REPL from UART0
             time.sleep_ms(5)            #delay is a must
             result = uart.read(1)
-            uos.dupterm(uart, 1)
+            uos.dupterm(uart, 1)        # enable REPL on UART(0), reattach REPL
 
             if result != None:
 #                 uart.write(result)    # for debug
@@ -60,7 +60,7 @@ def actSeq():
     uart.write("b26 4 24 4 20 4")
     time.sleep_ms(1000)
     uart.write("d")
-    uos.dupterm(None, 1)
+    uos.dupterm(None, 1)        # disable REPL on UART(0), detach the REPL from UART0
 
     
 if __name__ == "__main__":
